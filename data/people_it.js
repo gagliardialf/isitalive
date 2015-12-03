@@ -1,3 +1,22 @@
 module.exports.people_it = [
-	{id: 1, name: "Roberto Baggio", desc: "calciatore italiano", isAlive: true}
+	{id: 1, name: "Roberto Baggio", DOB: "18/2/1967", isAlive: true, DOD:"", desc: "calciatore italiano"},
+	{id: 2, name: "John Lennon", DOB: "9/10/1940", isAlive: false, DOD: "8/12/1980", desc: "musicista (The Beatles)"},
+	{id: 3, name: "Paul McCartney", DOB: "18/6/1942", isAlive: true, DOD: "", desc: "musicista (The Beatles)"},
+	{id: 4, name: "George Harrison", DOB: "25/2/1943", isAlive: false, DOD: "29/11/2001", desc: "chitarrista (The Beatles)"},
+	{id: 5, name: "Ringo Starr", DOB: "7/7/1940", isAlive: true, DOD: "", desc: "batterista (The Beatles)"},
+	{id: 6, name: "Freddie Mercury", DOB: "5/9/1946", isAlive: false, DOD: "24/11/1991", desc: "cantante (Queen)"},
+	{id: 7, name: "Brian May", DOB: "19/7/1947", isAlive: true, DOD: "", desc: "chitarrista (Queen)"},
+	{id: 8, name: "David Gilmour", DOB: "6/3/1946", isAlive: true, DOD: "", desc: "cantante (Pink Floyd)"},
+	{id: 9, name: "Roger Waters", DOB: "6/9/1943", isAlive: true, DOD: "", desc: "bassista (Pink Floyd)"},
+	{id: 10, name: "Syd Barrett", DOB: "6/1/1946", isAlive: false, DOD: "7/7/2006", desc: "chitarrista (Pink Floyd)"},
+	{id: 11, name: "Joe Cocker", DOB: "20/5/1944", isAlive: false, DOD: "22/12/2014", desc: "cantante"},
+	{id: 12, name: "Anita Ekberg", DOB: "29/9/1931", isAlive: false, DOD: "11/1/2015", desc: "attrice"},
+	{id: 13, name: "B. B. King", DOB: "9/16/1925", isAlive: false, DOD: "14/5/2015", desc: "musicista"},
+	{id: 14, name: "Noam Chomsky", DOB: "7/12/1928", isAlive: true, DOD: "", desc: "scienziato - linguista"},
+	{id: 15, name: "Stanley Kubrick", DOB: "26/7/1928", isAlive: false, DOD: "7/3/1999", desc: "regista"},
+	{id: 16, name: "George Lucas", DOB: "14/5/1944", isAlive: true, DOD: "", desc: "regista"},
+	{id: 17, name: "Roman Polanski", DOB: "18/8/1933", isAlive: true, DOD: "", desc: "regista"},
+	{id: 18, name: "Martin Scorsese", DOB: "17/11/1942", isAlive: true, DOD: "", desc: "regista"},
+	{id: 19, name: "Steven Spielberg", DOB: "18/12/1946", isAlive: true, DOD: "", desc: "regista"},
+	{id: 20, name: "Robert Zemeckis", DOB: "14/5/1951", isAlive: true, DOD: "", desc: "regista"}
 ];
