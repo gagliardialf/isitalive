@@ -1,0 +1,16 @@
+{
+  "name": "isitalive",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.6",
+    "grunt": "~0.4.4"
+  },
+  "devDependencies": {
+    "grunt-mocha-test": "~0.10.2",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}
