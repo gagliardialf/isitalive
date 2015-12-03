@@ -3,6 +3,11 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+
+var Question = require('./services/question');
+var data = require('./data/people_it');
+
+var question = new Question(data);
 var app = express();
 
 // all environments
@@ -15,7 +20,7 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/new', function (req, res) {
-	res.send(200, 'ok');
+	res.send(200, question.new());
 });
 
 http.createServer(app).listen(app.get('port'), function(){
