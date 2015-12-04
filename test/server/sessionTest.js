@@ -27,7 +27,14 @@ describe('session', function () {
 			var started = session.start();			
 			started.should.be.false;
 			session.sessions.length.should.be.equal(0);
-		});		
+		});
+
+		it('should not start a session twice (with the same id)', function () {
+			var s1 = session.start('1');
+			var s2 = session.start('1');
+			s2.should.be.false;
+			session.sessions.length.should.be.equal(1);
+		});	
 	});
 
 	describe('stop', function () {
@@ -43,6 +50,12 @@ describe('session', function () {
 
 		it('should not stop a session if the id parameter is not passed', function () {
 			var stopped = session.stop();			
+			stopped.should.be.false;
+			session.sessions.length.should.be.equal(1);
+		});
+
+		it('should return error if the id does not exist', function () {
+			var stopped = session.stop('2');
 			stopped.should.be.false;
 			session.sessions.length.should.be.equal(1);
 		});
