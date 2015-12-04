@@ -23,6 +23,12 @@ app.get('/new', function (req, res) {
 	res.send(200, question.new());
 });
 
+app.all('/start', function (req, res) {
+	res.send(200, 'started');
+});
+app.all('/stop', function (req, res) {
+	res.send(200, 'stopped');
+});
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
