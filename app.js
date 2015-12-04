@@ -35,15 +35,21 @@ app.get('/stop', function (req, res) {
  * /alive: answers 'is dead' for the question linked to the given id
  */
 app.get('/new', function (req, res) {
-	res.status(200).send(question.new());
+	question.new(req.query.id, function (err, data) {
+		res.status(200).send(data);
+	});
 });
 
 app.get('/dead', function (req, res) {
-	res.status(200).send(question.answers(false, req.query.id));
+	question.answers(false, req.query.id, function (err, data) {
+		res.status(200).send(question.answers(false, req.query.id));
+	});
 });
 
-app.get('/dead', function (req, res) {
-	res.status(200).send(question.answers(false, req.query.id));
+app.get('/alive', function (req, res) {
+	question.answers(false, req.query.id, function (err, data) {
+		res.status(200).send(question.answers(true, req.query.id));
+	});
 });
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -1,17 +1,45 @@
+var _ = require('lodash');
+
 module.exports = function (data, session) {
-	this.new = function () {
-		var index = Math.floor(Math.random() * data.people_it.length);
-		return {
-			id: data.people_it[index].id,
-			name: data.people_it[index].name,
-			desc: data.people_it[index].desc
-		};
+	this.new = function (sId, cb) {
+		var err = null;
+		var question = null;
+		var questionIndex = Math.floor(Math.random() * data.people_it.length);
+		
+		if (session.update(sId, questionIndex)) {
+			question = {
+				id: data.people_it[questionIndex].id,
+				name: data.people_it[questionIndex].name,
+				desc: data.people_it[questionIndex].desc
+			};
+		} else {
+			err = new Error('Error while updating session!');
+		}
+		if (typeof (cb) === 'function') {
+			cb(err, question);
+		}
 	};
 
-	this.answer = function (id) {
-		if(!id || id.match(/\D/) !== null || isNaN(parseInt(id, 10))) {
-			return false;
+	this.answer = function (isAlive, id, cb) {
+		var err = null;
+		var resp = null;
+		var s = session.find(id);
+		if (s == undefined) {
+			err = new Error('Error while retrieving session!');
+		} else {
+			var question = _.find(data.people_it, function (el) {
+				return el.id == id;
+			});
+			if (question == undefined) {
+				err = new Error('Error while retrieving question!');
+			} else {
+				resp = {
+					feedback: isAlive === question.isAlive
+				};
+			}
 		}
-		return true;
+		if (typeof (cb) === 'function') {
+			cb(err, resp);
+		}
 	}
 };
