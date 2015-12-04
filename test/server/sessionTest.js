@@ -60,4 +60,32 @@ describe('session', function () {
 			session.sessions.length.should.be.equal(1);
 		});
 	});
+
+	describe('get', function () {
+		it('should get an existing session', function () {
+			session.start('1');
+			var s = session.get('1');
+			s.id.should.be.equal('1');
+			s.currentQuestion.should.be.equal(-1);
+		});
+
+		it('should return <undefined> if the session does not exist', function () {
+			var s = session.get('1');
+			(s === undefined).should.be.true;
+		});
+	});
+
+	describe('update', function () {
+		it('should update an existing session', function () {
+			session.start('1');
+			(session.update('1', 123)).should.be.true;
+			var s = session.get('1');
+			s.id.should.be.equal('1');
+			s.currentQuestion.should.be.equal(123);
+		});
+
+		it('should return <false> if the session does not exist', function () {
+			(session.update('unexisting', 123)).should.be.false;
+		});
+	})
 });
