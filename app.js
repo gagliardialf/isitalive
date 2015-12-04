@@ -41,14 +41,14 @@ app.get('/new', function (req, res) {
 });
 
 app.get('/dead', function (req, res) {
-	question.answers(false, req.query.id, function (err, data) {
-		res.status(200).send(question.answers(false, req.query.id));
+	question.answer(false, req.query.id, function (err, data) {
+		res.status(200).send(data);
 	});
 });
 
 app.get('/alive', function (req, res) {
-	question.answers(false, req.query.id, function (err, data) {
-		res.status(200).send(question.answers(true, req.query.id));
+	question.answer(false, req.query.id, function (err, data) {
+		res.status(200).send(data);
 	});
 });
 

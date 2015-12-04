@@ -23,7 +23,7 @@ module.exports = function (data, session) {
 	this.answer = function (isAlive, id, cb) {
 		var err = null;
 		var resp = null;
-		var s = session.find(id);
+		var s = session.get(id);
 		if (s == undefined) {
 			err = new Error('Error while retrieving session!');
 		} else {
