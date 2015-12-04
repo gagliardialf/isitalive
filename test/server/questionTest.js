@@ -14,7 +14,10 @@ describe('question', function () {
 				{id: 1, name: "name", desc: "desc", isAlive: true}
 			]
 		};
-		question = new Question(data);
+		var fakeSession = {
+			sessions: []
+		}
+		question = new Question(data, fakeSession);
 	});
 	
 	describe('new', function () {

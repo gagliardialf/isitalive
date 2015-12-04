@@ -1,4 +1,4 @@
-module.exports = function (data) {
+module.exports = function (data, session) {
 	this.new = function () {
 		var index = Math.floor(Math.random() * data.people_it.length);
 		return {
