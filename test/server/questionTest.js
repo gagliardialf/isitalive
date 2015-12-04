@@ -54,4 +54,12 @@ describe('question', function () {
 			}, 100);
 		});
 	});
+
+	describe('answer', function () {
+		[null, undefined, '', '   ', 'asdas', ' 3s'].forEach(function(elem) {
+			it('should return <false> if the answer id is ' + elem, function () {
+				question.answer(elem).should.be.false;
+			});
+		});
+	});
 });

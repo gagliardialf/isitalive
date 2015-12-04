@@ -7,4 +7,11 @@ module.exports = function (data) {
 			desc: data.people_it[index].desc
 		};
 	};
+
+	this.answer = function (id) {
+		if(!id || id.match(/\D/) !== null || isNaN(parseInt(id, 10))) {
+			return false;
+		}
+		return true;
+	}
 };
