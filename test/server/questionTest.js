@@ -109,7 +109,7 @@ describe('question', function () {
 
 		[{question: '1', isAlive: true}, {question: '2', isAlive: false}].forEach (function (el) {
 			it('should tell if the given question is right --> ' + JSON.stringify(el), function (done) {	
-				fakeSession.get = function () { return true; }
+				fakeSession.get = function () { return {currentQuestion: el.question}; };
 				question.answer(el.isAlive, el.question, function (err, data) {
 					(err === null).should.be.true;
 					(data.feedback).should.be.equal(true);
@@ -120,7 +120,7 @@ describe('question', function () {
 
 		[{question: '1', isAlive: false}, {question: '2', isAlive: true}].forEach (function (el) {
 			it('should tell if the given question is wrong --> ' + JSON.stringify(el), function (done) {	
-				fakeSession.get = function () { return true; }
+				fakeSession.get = function () { return {currentQuestion: el.question}; };
 				question.answer(el.isAlive, el.question, function (err, data) {
 					(err === null).should.be.true;
 					(data.feedback).should.be.equal(false);

@@ -5,10 +5,10 @@ module.exports = function (data, session) {
 		var err = null;
 		var question = null;
 		var questionIndex = Math.floor(Math.random() * data.people_it.length);
-		
-		if (session.update(sId, questionIndex)) {
+		var questionId = data.people_it[questionIndex].id;
+		if (session.update(sId, questionId)) {
 			question = {
-				id: data.people_it[questionIndex].id,
+				id: questionId,
 				name: data.people_it[questionIndex].name,
 				desc: data.people_it[questionIndex].desc
 			};
@@ -28,7 +28,7 @@ module.exports = function (data, session) {
 			err = new Error('Error while retrieving session!');
 		} else {
 			var question = _.find(data.people_it, function (el) {
-				return el.id == id;
+				return el.id == s.currentQuestion;
 			});
 			if (question == undefined) {
 				err = new Error('Error while retrieving question!');

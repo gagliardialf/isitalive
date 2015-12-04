@@ -47,7 +47,7 @@ app.get('/dead', function (req, res) {
 });
 
 app.get('/alive', function (req, res) {
-	question.answer(false, req.query.id, function (err, data) {
+	question.answer(true, req.query.id, function (err, data) {
 		res.status(200).send(data);
 	});
 });
