@@ -7,6 +7,7 @@ var data = require('../data/people_it');
 
 var session = new Session();
 var question = new Question(data, session);
+var telegram = require('../helpers/telegram.js');
 
 router.post('/', function(req, res, next) {
 
