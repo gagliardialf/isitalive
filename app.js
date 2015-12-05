@@ -4,12 +4,10 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 
-var Question = require('./services/question');
-var Session = require('./services/session');
-var data = require('./data/people_it');
+var routes = require('./routes/index');
+var api = require('./routes/api');
+var telegram = require('./routes/telegram');
 
-var session = new Session();
-var question = new Question(data, session);
 var app = express();
 
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
@@ -17,40 +15,15 @@ app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*
- * SESSION MANAGEMENT API
- * /start: start a new game session for a given id
- * /stop: stop the session for the given id
- */
-app.get('/start', function (req, res) {
-	res.status(200).send(session.start(req.query.id));
-});
-app.get('/stop', function (req, res) {
-	res.status(200).send(session.stop(req.query.id));
-});
+app.use('/', routes);
+app.use('/api', api);
+app.use('/telegram', telegram);
 
-/*
- * QUESTIONS API
- * /new: sets a new question for the given id
- * /dead: answers 'is dead' for the question linked to the given id
- * /alive: answers 'is dead' for the question linked to the given id
- */
-app.get('/new', function (req, res) {
-	question.new(req.query.id, function (err, data) {
-		res.status(200).send(data);
-	});
-});
-
-app.get('/dead', function (req, res) {
-	question.answer(false, req.query.id, function (err, data) {
-		res.status(200).send(data);
-	});
-});
-
-app.get('/alive', function (req, res) {
-	question.answer(true, req.query.id, function (err, data) {
-		res.status(200).send(data);
-	});
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 http.createServer(app).listen(app.get('port') ,app.get('ip'), function () {
